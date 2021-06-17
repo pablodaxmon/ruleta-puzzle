@@ -10,7 +10,6 @@ public class SaveGameSystem
     //leemos el archivo gamesave.save y devolvemos el parametro 
     public int loadGame()
     {
-        CDebug.Log();
         int save;
         // si existe el archivo entonces lo abrimos y guardamos sus datos en SAVE
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
