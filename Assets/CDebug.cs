@@ -23,6 +23,18 @@ public static class CDebug
     {
         Debug.Log(" <b><color=green> Test here </color></b> ");
     }
+    public static void LogRed(string message)
+    {
+        Debug.Log(" <b><color=red> " + message + "</color></b> ");
+    }
+    public static void LogBlue(string message)
+    {
+        Debug.Log(" <b><color=blue>" + message + "</color></b> ");
+    }
+    public static void LogGreen(string message)
+    {
+        Debug.Log(" <b><color=green>" + message + "</color></b> ");
+    }
     public static void Log(object objA) {
         Debug.Log("Parametro A: " + objA);
     }

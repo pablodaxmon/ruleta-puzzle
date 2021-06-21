@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 
 /// Controla la rotacion 
 public class CentroControlle : MonoBehaviour
@@ -11,8 +13,8 @@ public class CentroControlle : MonoBehaviour
     public EventHandler<GameObject> giroCompleto;
 
 
-    GameObject[] objetosRotables;
-    GameObject[] esquinas;
+    List<GameObject> objetosRotables;
+    List<GameObject> esquinas;
     public AnimationCurve curvaCamara;
     public AnimationCurve animationRotation;
     public float anguloLimiteMinimoCompletarGiro;
@@ -21,17 +23,22 @@ public class CentroControlle : MonoBehaviour
     private Vector3 initialtouchposition;
     private float velocitySmoothGiro = 0;
     private float velocitySmoothCompleteGiro = 0;
-    public static bool rotando;
+    public static bool rotando { get; set; }
+
     public static int progreso;
 
+    public ColorMapping structureColor;
 
     private void Start()
     {
+
         obtenerObjetosRotables();
         obtenerEsquinas();
-        llamarSistemaParticulas();
     }
-
+    private void obtenerEsquinas()
+    {
+        esquinas = new List<GameObject>(GameObject.FindGameObjectsWithTag("Esquina"));
+    }
     //Se llama a esta funcion el instante que el mouse hizo click en el circulo
     private void OnMouseDown()
     {
@@ -59,6 +66,8 @@ public class CentroControlle : MonoBehaviour
             clickLegal = true;
 
             rotarCirculoPequeño();
+
+            centroClickDown?.Invoke(this, this.gameObject);
         }
     }
     private void OnMouseDrag()
@@ -120,14 +129,7 @@ public class CentroControlle : MonoBehaviour
 
     private void obtenerObjetosRotables()
     {
-        if (objetosRotables != null)
-        {
-
-            Debug.Log(objetosRotables.Length);
-        }
-        objetosRotables = GameObject.FindGameObjectsWithTag("IRotableL");
-
-
+        objetosRotables = new List<GameObject>(GameObject.FindGameObjectsWithTag("Rotable"));
 
     }
     private float calcularAnguloComplementario()

@@ -22,7 +22,7 @@ public class MainGame : MonoBehaviour
     // Level actual index 
 
     // Level actual index
-    private int nivelActual;
+    public int nivelActual { get; set; }
 
     private Game game;
 
@@ -46,13 +46,20 @@ public class MainGame : MonoBehaviour
         game.levelCompleteEvent += levelCompleteNotify;
     }
 
+    public float getIndiceDeDesorden()
+    {
+        return niveles[nivelActual].GetComponent<Nivel>().dificultad;
+    }
 
     // Inicial el nivel
     private void loadLevel(object sender, int nivel)
     {
         nivelActual = nivel;
 
-        uicontroller.setTextReleaseLevel("Titulo nivel " + (nivel + 1).ToString(), "Movimientos " + (nivel*5).ToString(), "tiempo no estimado!");
+        uicontroller.setTextReleaseLevel(
+            "Titulo nivel " + (nivel + 1).ToString(),
+            "Movimientos " + (nivel*5).ToString(),
+            "tiempo no estimado!");
     }
 
 

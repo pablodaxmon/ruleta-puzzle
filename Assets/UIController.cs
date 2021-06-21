@@ -29,7 +29,6 @@ public class UIController : MonoBehaviour
     public void updateLevels(GameObject[] niveles, int saveGame)
     {
         clearCards();
-        int posX; 
         mark = GameObject.Instantiate(markActualLevel, levelsContainer.transform);
         mark.GetComponent<RectTransform>().anchoredPosition = new Vector2(74 + (135 * 5), 0);
         for (int i = 0; i<niveles.Length; i++)
