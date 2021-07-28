@@ -28,7 +28,7 @@ public class ColorMapping : MonoBehaviour
 
 
 
-    public void Start()
+    public void SetStart()
     {
         derecha = new ordenColores();
 

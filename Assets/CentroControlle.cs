@@ -23,13 +23,15 @@ public class CentroControlle : MonoBehaviour
     private Vector3 initialtouchposition;
     private float velocitySmoothGiro = 0;
     private float velocitySmoothCompleteGiro = 0;
+
+
     public static bool rotando { get; set; }
 
     public static int progreso;
 
     public ColorMapping structureColor;
 
-    private void Start()
+    public void SetStart()
     {
 
         obtenerObjetosRotables();
@@ -251,13 +253,14 @@ public class CentroControlle : MonoBehaviour
 
         float rotacionZactual = this.transform.eulerAngles.z;
         float contador = 0;
-        while (contador < anguloGiro)
+        /*while (contador < anguloGiro)
         {
-            contador += Time.deltaTime * velocidad;
-            transform.eulerAngles = new Vector3(0, 0, rotacionZactual + contador);
+            contador += Time.deltaTime * velocidad * 0.5f;
+            transform.eulerAngles = new Vector3(0, 0, rotacionZactual - contador);
             yield return null;
-        }
-        this.transform.eulerAngles = new Vector3(0, 0, rotacionZactual + anguloGiro);
+        }*/
+        this.transform.eulerAngles = new Vector3(0, 0, rotacionZactual - anguloGiro);
+        yield return new WaitForSeconds(velocidad);
         elimitarParentsDeRotables();
 
         giroCompleto?.Invoke(this, this.gameObject);

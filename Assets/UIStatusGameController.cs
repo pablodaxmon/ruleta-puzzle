@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class UIStatusGameController : MonoBehaviour
@@ -9,19 +9,17 @@ public class UIStatusGameController : MonoBehaviour
     private GameManager gameManager;
     private Game game;
 
-    public Text textoPuntaje;
+    public TextMeshProUGUI textoPuntaje;
     public Slider sliderPuntaje;
 
     private int maxPoints;
     private int points;
     private float sliderChangeVelocity = 0f;
 
-    public GameObject panelLevelComplete;
-    private void Start()
+    public void Start()
     {
         gameManager = GetComponent<GameManager>();
         game = GetComponent<Game>();
-        panelLevelComplete.SetActive(false);
     }
 
     public void setMaxPoints(int points)
@@ -44,11 +42,7 @@ public class UIStatusGameController : MonoBehaviour
         textoPuntaje.text = porcentajeRedondeado.ToString() + "%";
     }
 
-    public void levelComplete()
-    {
-        panelLevelComplete.SetActive(true);
-    }
-
+   
 
 
 }
